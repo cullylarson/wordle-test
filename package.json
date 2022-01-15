@@ -1,0 +1,22 @@
+{
+  "name": "wordle-test",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "scripts": {
+    "start": "node run.js",
+    "lint": "esw --watch --color ."
+  },
+  "author": "Cully Larson",
+  "dependencies": {
+    "@cullylarson/f": "^0.1.2",
+    "@cullylarson/p": "^0.1.0"
+  },
+  "devDependencies": {
+    "eslint": "^7.12.1",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-jest": "^25.3.4",
+    "eslint-watch": "^7.0.0"
+  }
+}
