@@ -1,9 +1,8 @@
-import fs from 'fs'
-import {promisify} from 'util'
 import {then} from '@cullylarson/p'
 import {compose, map, filter, split, report} from '@cullylarson/f'
+import {readInput} from './lib.js'
 
-const NUM_WORDS_TO_FIND = 4
+const NUM_WORDS_TO_FIND = 2
 const EXCLUDE_DUPLICATES_IN_WORDS = true
 
 const flat = xs => xs.flat()
@@ -102,13 +101,6 @@ const findPath = (details) => {
 }
 
 const noDuplicates = x => x.length === removeDuplicates(x).length
-
-const readInput = (fileName) => then(compose(
-  filter(Boolean),
-  split('\n'),
-), readFile(fileName, {encoding: 'utf8'}))
-
-const readFile = promisify(fs.readFile)
 
 then(compose(
   report,
