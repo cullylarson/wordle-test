@@ -4,6 +4,7 @@ import {readInput} from './lib.js'
 
 const HAS_LETTERS = (process.argv[2] || '').split('')
 const SKIP_LETTERS = (process.argv[3] || '').split('')
+const ORDERING = (process.argv[4] || '').split('')
 
 const containsAllLetters = curry((letters, word) => {
   const wordLetters = word.split('')
@@ -17,8 +18,24 @@ const doesntContainLetters = curry((letters, word) => {
   return !letters.some(x => wordLetters.includes(x))
 })
 
+const hasOrdering = curry((ordering, word) => {
+  const wordLetters = word.split('')
+
+  for(let i = 0; i < wordLetters.length; i++) {
+    const orderingLetter = ordering[i] || '_'
+    const wordLetter = wordLetters[i]
+
+    if(orderingLetter !== '_' && orderingLetter !== wordLetter) {
+      return false
+    }
+  }
+
+  return true
+})
+
 then(compose(
   report,
+  filter(hasOrdering(ORDERING)),
   filter(doesntContainLetters(SKIP_LETTERS)),
   filter(containsAllLetters(HAS_LETTERS)),
 ), readInput('5-letter-words.txt'))
